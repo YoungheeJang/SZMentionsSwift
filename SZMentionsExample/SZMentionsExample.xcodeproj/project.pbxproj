@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AE17AFE21B7BFCC0097FE6E /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE17AFD21B7BFCC0097FE6E /* TextView.swift */; };
 		6BEC0AED1AC421B3207001AF /* Pods_SZMentionsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89461E54044C13EAD515B2E /* Pods_SZMentionsExample.framework */; };
 		DBCFB3891C449874007E3722 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBCFB3881C449874007E3722 /* Assets.xcassets */; };
 		DBE8B4A81C657F720090EF32 /* SZMentionsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE8B4A71C657F720090EF32 /* SZMentionsSwift.framework */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3AE17AFD21B7BFCC0097FE6E /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		6C3C485192C9E1DB55ACFC47 /* Pods-SZMentionsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SZMentionsExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SZMentionsExample/Pods-SZMentionsExample.release.xcconfig"; sourceTree = "<group>"; };
 		C89461E54044C13EAD515B2E /* Pods_SZMentionsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SZMentionsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCFB37E1C449874007E3722 /* SZMentionsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SZMentionsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 				DBE8B4AC1C657FC60090EF32 /* ExampleMention.swift */,
 				DBE8B4AD1C657FC60090EF32 /* ExampleMentionsTableViewDataManager.swift */,
 				DBE8B4AE1C657FC60090EF32 /* ExampleViewController.swift */,
+				3AE17AFD21B7BFCC0097FE6E /* TextView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 				TargetAttributes = {
 					DBCFB37D1C449874007E3722 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = C6578G8P72;
 						LastSwiftMigration = 0910;
 					};
 				};
@@ -228,6 +232,7 @@
 				DBE8B4B31C657FC60090EF32 /* ExampleViewController.swift in Sources */,
 				DBE8B4B21C657FC60090EF32 /* ExampleMentionsTableViewDataManager.swift in Sources */,
 				DBE8B4B11C657FC60090EF32 /* ExampleMention.swift in Sources */,
+				3AE17AFE21B7BFCC0097FE6E /* TextView.swift in Sources */,
 				DBE8B4AF1C657FC60090EF32 /* AppDelegate.swift in Sources */,
 				DBE8B4B01C657FC60090EF32 /* ExampleAccessoryView.swift in Sources */,
 			);
@@ -282,7 +287,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -331,7 +336,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -345,6 +350,7 @@
 			baseConfigurationReference = DD136B6FF0AC995F5BF39F4E /* Pods-SZMentionsExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C6578G8P72;
 				INFOPLIST_FILE = SZMentionsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.StevenZweier.SZMentionsSwiftExample;
@@ -358,6 +364,7 @@
 			baseConfigurationReference = 6C3C485192C9E1DB55ACFC47 /* Pods-SZMentionsExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C6578G8P72;
 				INFOPLIST_FILE = SZMentionsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.StevenZweier.SZMentionsSwiftExample;

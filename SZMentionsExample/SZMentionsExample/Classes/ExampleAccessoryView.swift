@@ -8,13 +8,14 @@
 
 import UIKit
 import SZMentionsSwift
+import Hakawai
 
 class ExampleAccessoryView: UIView {
     struct Attribute: AttributeContainer {
         var name: String
         var value: NSObject
     }
-    private let textView = UITextView()
+    private let textView = TextView()
     private let mentionsTableView = UITableView()
     private let mentionAttributes: [AttributeContainer] = [
         Attribute(
@@ -24,8 +25,8 @@ class ExampleAccessoryView: UIView {
             name: NSAttributedStringKey.font.rawValue,
             value: UIFont(name: "ChalkboardSE-Bold", size: 12)!),
         Attribute(
-            name: NSAttributedStringKey.backgroundColor.rawValue,
-            value: UIColor.lightGray)
+          name: HKWRoundedRectBackgroundAttributeName,
+          value: HKWRoundedRectBackgroundAttributeValue.init(backgroundColor: UIColor.blue))
     ]
     private let defaultAttributes: [AttributeContainer] = [
         Attribute(
@@ -35,8 +36,8 @@ class ExampleAccessoryView: UIView {
             name: NSAttributedStringKey.font.rawValue,
             value: UIFont(name: "ArialMT", size: 12)!),
         Attribute(
-            name: NSAttributedStringKey.backgroundColor.rawValue,
-            value: UIColor.white)
+          name: HKWRoundedRectBackgroundAttributeName,
+          value: HKWRoundedRectBackgroundAttributeValue.init(backgroundColor: UIColor.clear))
     ]
     private var dataManager: ExampleMentionsTableViewDataManager?
     
