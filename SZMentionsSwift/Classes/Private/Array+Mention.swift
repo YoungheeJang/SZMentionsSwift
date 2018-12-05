@@ -36,7 +36,21 @@ internal extension Array where Element == Mention {
             }
         }
     }
-
+    
+    mutating func adjustWordMentions(forTextChangeAt range: NSRange, text: String) {
+        let rangeAdjustment = range.length
+        mentionsAfterTextEntry(range).forEach { mention in
+            var adjustedMention = mention
+            adjustedMention.range = NSRange(
+                location: mention.range.location - rangeAdjustment,
+                length: mention.range.length
+            )
+            if let index = index(of: mention) {
+                self[index] = adjustedMention
+            }
+        }
+    }
+    
     /**
      @brief Determines what mentions exist after a given range
      @param range: the range where text was changed

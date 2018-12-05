@@ -374,10 +374,23 @@ extension MentionListener {
         if let index = mutableMentions.index(of: mention) {
             editingMention = true
             mutableMentions.remove(at: index)
+            
+            let text: String = NSString(string: mentionsTextView.text).replacingCharacters(in: mention.range, with: "")
+            mentionsTextView.text = text
+            resetTypingAttributes(for: mentionsTextView)
+            
+            mutableMentions.adjustWordMentions(forTextChangeAt: mention.range, text: mention.object.name)
         }
         if let mutableAttributedString = mentionsTextView.attributedText.mutableCopy() as? NSMutableAttributedString {
-            mutableAttributedString.apply(defaultTextAttributes, range: mention.range)
+            for mention in mutableMentions {
+                mutableAttributedString.apply(mentionTextAttributes(mention.object), range: mention.range)
+            }
             mentionsTextView.attributedText = mutableAttributedString
+        }
+        
+        let arbitraryValue = mention.range.location
+        if let newPosiion = mentionsTextView.position(from: mentionsTextView.beginningOfDocument, in: .right, offset: arbitraryValue) {
+            mentionsTextView.selectedTextRange = mentionsTextView.textRange(from: newPosiion, to: newPosiion)
         }
     }
 
@@ -390,21 +403,22 @@ extension MentionListener {
      */
     @discardableResult private func shouldAdjust(_ textView: UITextView, range: NSRange, text: String) -> Bool {
         var shouldAdjust = true
-
+        
         if textView.text.isEmpty { reset(textView) }
-
+        
         editingMention = false
-
+        
         if let editedMention = mentions.mentionBeingEdited(at: range) {
             clearMention(editedMention)
-
+            
             shouldAdjust = handleEditingMention(editedMention, textView: textView, range: range, text: text)
         }
-
-        mutableMentions.adjustMentions(forTextChangeAt: range, text: text)
-
+        else {
+            mutableMentions.adjustMentions(forTextChangeAt: range, text: text)
+        }
+        
         _ = delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text)
-
+        
         return shouldAdjust
     }
 
@@ -417,14 +431,14 @@ extension MentionListener {
      */
     private func handleEditingMention(_: Mention, textView: UITextView,
                                       range: NSRange, text: String) -> Bool {
-        if let mutableAttributedString = textView.attributedText.mutableCopy() as? NSMutableAttributedString {
-            mutableAttributedString.mutableString.replaceCharacters(in: range, with: text)
-            textView.attributedText = mutableAttributedString
-            textView.selectedRange = NSRange(location: range.location + text.utf16.count, length: 0)
-
-            _ = delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text)
-        }
-
+        //        if let mutableAttributedString = textView.attributedText.mutableCopy() as? NSMutableAttributedString {
+        //            mutableAttributedString.mutableString.replaceCharacters(in: range, with: text)
+        //            textView.attributedText = mutableAttributedString
+        //            textView.selectedRange = NSRange(location: range.location + text.utf16.count, length: 0)
+        //
+        //            _ = delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text)
+        //        }
+        _ = delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text)
         return false
     }
 
