@@ -2,5 +2,6 @@ use_frameworks!
 platform :ios, '9.3'
 
 target 'SZMentionsExample' do
-  pod 'SZMentionsSwift', :path => '../'
+pod 'SZMentionsSwift', :git => 'https://github.com/YoungheeJang/SZMentionsSwift.git', :branch => 'develop'
+pod 'Hakawai', :git => 'https://github.com/YoungheeJang/Hakawai.git', :branch => 'develop'
 end
