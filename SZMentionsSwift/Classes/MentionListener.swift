@@ -500,6 +500,8 @@ extension MentionListener: UITextViewDelegate {
     }
 
     public func textViewDidChange(_ textView: UITextView) {
+        _ = mutableMentions.reAdjustMentions(text: textView.text)
+        
         if textView.selectedRange.location > 1 {
             let substring = (textView.attributedText.string as NSString).substring(with: NSRange(location: textView.selectedRange.location - 2, length: 2))
             if substring == ". ", let mutableAttributedString = textView.attributedText.mutableCopy() as? NSMutableAttributedString {

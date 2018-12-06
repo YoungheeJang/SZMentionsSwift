@@ -51,6 +51,36 @@ internal extension Array where Element == Mention {
         }
     }
     
+    mutating func reAdjustMentions(text: String) {
+        let rangeAdjustmentArry: [Int] = [0, -1, 1, -2, 2]
+        
+        self.forEach { mention in
+            
+            var adjustedMention = mention
+            adjustedMention.range = NSRange(
+                location: mention.range.location,
+                length: mention.range.length
+            )
+            
+            for rangeAdjustment in rangeAdjustmentArry {
+                var isEqual = true
+                adjustedMention.range.location = mention.range.location + rangeAdjustment
+                for (i, char) in mention.object.name.enumerated() {
+                    let compareIndex = text.index(text.startIndex, offsetBy: adjustedMention.range.location + i)
+                    if text[compareIndex] != char {
+                        isEqual = false
+                        break;
+                    }
+                }
+                if isEqual { break }
+            }
+            
+            if let index = index(of: mention) {
+                self[index] = adjustedMention
+            }
+        }
+    }
+    
     /**
      @brief Determines what mentions exist after a given range
      @param range: the range where text was changed
