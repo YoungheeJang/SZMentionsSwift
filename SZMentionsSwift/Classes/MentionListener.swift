@@ -334,7 +334,7 @@ extension MentionListener {
                 // (in the case of an @ trigger this avoids showing the mention list for an email address)
                 let substringRange = NSRange(location: location - 1, length: 1)
                 textBeforeTrigger = substring.substring(with: substringRange)
-                mentionEnabled = textBeforeTrigger == " " || textBeforeTrigger == "\n"
+                mentionEnabled = true
             }
         }
 
