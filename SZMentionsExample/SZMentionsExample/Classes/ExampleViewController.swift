@@ -31,6 +31,7 @@ class ExampleViewController: UIViewController, UITextViewDelegate {
         label.text = "data"
         label.numberOfLines = 0
         label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 12)
         
         self.view.addSubview(button)
         self.view.addSubview(label)
@@ -45,10 +46,15 @@ class ExampleViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func buttonClick() {
+        // TODO : 정리 필요.
         label.text = myInputAccessoryView.textView.text
-        var text = myInputAccessoryView.textView.text
-        
-        
+        var text = myInputAccessoryView.textView.text as NSString?
+        let mentions = myInputAccessoryView.dataManager?.listener.mentions.sorted{ $0.range.location > $1.range.location }
+        for mention in mentions! {
+          let temp = text?.replacingCharacters(in: mention.range, with: "@{12358347872342342|\(mention.object.name)}")
+          text = temp as NSString?
+      }
+      label.text = String(text!)
     }
 
     required init?(coder aDecoder: NSCoder) {
