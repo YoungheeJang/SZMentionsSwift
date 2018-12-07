@@ -5,11 +5,17 @@ PODS:
   - Hakawai/Core (6.0.1)
   - Hakawai/Mentions (6.0.1):
     - Hakawai/Core
+  - SnapKit (4.2.0)
   - SZMentionsSwift (2.0.5)
 
 DEPENDENCIES:
   - Hakawai (from `https://github.com/YoungheeJang/Hakawai.git`, branch `develop`)
+  - SnapKit
   - SZMentionsSwift (from `https://github.com/YoungheeJang/SZMentionsSwift.git`, branch `develop`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SnapKit
 
 EXTERNAL SOURCES:
   Hakawai:
@@ -24,13 +30,14 @@ CHECKOUT OPTIONS:
     :commit: 37aaff48ae2d2f516650dd354129d61b5c54c80c
     :git: https://github.com/YoungheeJang/Hakawai.git
   SZMentionsSwift:
-    :commit: 6254fa20d75396f0d1725929473d76ad185c7c07
+    :commit: 2db2d6dec67e6e60932746980419e9e6e3a36a1b
     :git: https://github.com/YoungheeJang/SZMentionsSwift.git
 
 SPEC CHECKSUMS:
   Hakawai: eddcbda7129ac1a7fbab9fc4ff90ad930e790f7f
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SZMentionsSwift: fd115a549032032706419e7d46ff0a7b58d288a2
 
-PODFILE CHECKSUM: 26f500cd51ba3bb59f3c660346b3cd2e25315f9e
+PODFILE CHECKSUM: 21ab4ad39daaaeb424d78b2f651031498d0e52b3
 
 COCOAPODS: 1.5.3

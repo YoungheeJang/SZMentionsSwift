@@ -11,7 +11,7 @@ import SZMentionsSwift
 
 class ExampleMentionsTableViewDataManager: NSObject {
     private let cellIdentifier = "Cell"
-    private let listener: MentionListener
+    public let listener: MentionListener
     private let mentions: [ExampleMention] = {
         return [
             "홍길동",

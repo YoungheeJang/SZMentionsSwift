@@ -24,7 +24,7 @@ class ExampleAccessoryView: UIView {
         var name: String
         var value: NSObject
     }
-    private let textView = TextView()
+    public let textView = TextView()
     private let mentionsTableView = UITableView()
     private let mentionAttributes: [AttributeContainer] = [
         Attribute(
@@ -54,7 +54,7 @@ class ExampleAccessoryView: UIView {
           name: HKWRoundedRectBackgroundAttributeName,
           value: HKWRoundedRectBackgroundAttributeValue.init(backgroundColor: UIColor.clear))
     ]
-    private var dataManager: ExampleMentionsTableViewDataManager?
+    public var dataManager: ExampleMentionsTableViewDataManager?
     
     init(delegate: UITextViewDelegate) {
         super.init(frame: .zero)
