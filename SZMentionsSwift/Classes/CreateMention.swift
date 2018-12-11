@@ -10,8 +10,9 @@ import UIKit
 
 public protocol CreateMention {
     /**
-     @brief The name of the mention to be added to the UITextView when selected.
+     @brief The id, name of the mention to be added to the UITextView when selected.
      */
+    var id: String { get }
     var name: String { get }
 
     /**
