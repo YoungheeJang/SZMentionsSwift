@@ -244,6 +244,39 @@ extension MentionListener {
 
         return true
     }
+    
+    /**
+     @brief Insert a mention to the current mentionsTextView.selectedRange
+     @param mention: the mention object to apply
+     @return Bool: whether or not a mention was inserted
+     */
+    @discardableResult public func insertMention(_ createMention: CreateMention) -> Bool {
+        var selectedRange = mentionsTextView.selectedRange
+        guard let mutableAttributedString = mentionsTextView.attributedText.mutableCopy() as? NSMutableAttributedString
+            else { return false }
+        
+        let displayName = createMention.name + (spaceAfterMention ? " " : "")
+        mutableAttributedString.mutableString.replaceCharacters(in: selectedRange, with: displayName)
+        
+        mutableMentions.adjustMentions(forTextChangeAt: selectedRange, text: displayName)
+        
+        selectedRange = NSRange(location: selectedRange.location, length: createMention.name.utf16.count)
+        
+        let mention = Mention(range: selectedRange, object: createMention)
+        mutableMentions.append(mention)
+        
+        mutableAttributedString.apply(mentionTextAttributes(createMention), range: selectedRange)
+        
+        var newSelectedRange = NSRange(location: selectedRange.location + selectedRange.length, length: 0)
+        
+        mentionsTextView.attributedText = mutableAttributedString
+        
+        if spaceAfterMention { newSelectedRange.location += 1 }
+        
+        mentionsTextView.selectedRange = newSelectedRange
+        
+        return true
+    }
 }
 
 // MARK: Internal methods
