@@ -262,7 +262,7 @@ extension MentionListener {
         mutableMentions.adjustMentions(forTextChangeAt: selectedRange, text: displayName)
         
         selectedRange = NSRange(location: selectedRange.location, length: createMention.name.utf16.count)
-        let spaceRange = NSRange(location: currentMentionRange.location + createMention.name.utf16.count, length: 1)
+        let spaceRange = NSRange(location: selectedRange.location + createMention.name.utf16.count, length: 1)
         
         let mention = Mention(range: selectedRange, object: createMention)
         mutableMentions.append(mention)
