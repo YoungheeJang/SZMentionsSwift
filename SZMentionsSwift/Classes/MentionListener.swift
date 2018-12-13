@@ -226,13 +226,11 @@ extension MentionListener {
         mutableMentions.adjustMentions(forTextChangeAt: currentMentionRange, text: displayName)
 
         currentMentionRange = NSRange(location: currentMentionRange.location, length: createMention.name.utf16.count)
-        let spaceRange = NSRange(location: currentMentionRange.location + createMention.name.utf16.count, length: 1)
-        
+      
         let mention = Mention(range: currentMentionRange, object: createMention)
         mutableMentions.append(mention)
 
         mutableAttributedString.apply(mentionTextAttributes(createMention), range: currentMentionRange)
-        if spaceAfterMention { mutableAttributedString.apply(defaultTextAttributes, range: spaceRange) }
         var selectedRange = NSRange(location: currentMentionRange.location + currentMentionRange.length, length: 0)
 
         mentionsTextView.attributedText = mutableAttributedString
@@ -262,14 +260,11 @@ extension MentionListener {
         mutableMentions.adjustMentions(forTextChangeAt: selectedRange, text: displayName)
         
         selectedRange = NSRange(location: selectedRange.location, length: createMention.name.utf16.count)
-        let spaceRange = NSRange(location: selectedRange.location + createMention.name.utf16.count, length: 1)
-        
+      
         let mention = Mention(range: selectedRange, object: createMention)
         mutableMentions.append(mention)
         
         mutableAttributedString.apply(mentionTextAttributes(createMention), range: selectedRange)
-        if spaceAfterMention { mutableAttributedString.apply(defaultTextAttributes, range: spaceRange) }
-        
         var newSelectedRange = NSRange(location: selectedRange.location + selectedRange.length, length: 0)
         
         mentionsTextView.attributedText = mutableAttributedString
@@ -345,7 +340,19 @@ extension MentionListener {
         }
         textView.text = ""
     }
-
+  
+    private func resetAttributes(for textView: UITextView) {
+        if let mutableAttributedString = textView.attributedText.mutableCopy() as? NSMutableAttributedString {
+            let isSelected = textView.selectedRange
+            mutableAttributedString.apply(defaultTextAttributes, range: NSRange(location: 0, length: textView.text.utf16.count))
+            for mention in mutableMentions {
+                mutableAttributedString.apply(mentionTextAttributes(mention.object), range: mention.range)
+            }
+            mentionsTextView.attributedText = mutableAttributedString
+            textView.selectedRange = isSelected
+        }
+    }
+    
     /**
      @brief Uses the text view to determine the current mention being adjusted based on
      the currently selected range and the nearest trigger when doing a backward search.  It also
@@ -537,6 +544,7 @@ extension MentionListener: UITextViewDelegate {
 
     public func textViewDidChange(_ textView: UITextView) {
         _ = mutableMentions.reAdjustMentions(text: textView.text)
+        resetAttributes(for: textView)
         
         if textView.selectedRange.location > 1 {
             let substring = (textView.attributedText.string as NSString).substring(with: NSRange(location: textView.selectedRange.location - 2, length: 2))
