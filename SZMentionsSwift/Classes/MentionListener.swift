@@ -362,35 +362,30 @@ extension MentionListener {
      */
     private func adjust(_ textView: UITextView, range: NSRange) {
         let string = (textView.text as NSString).substring(to: range.location + range.length)
-        var textBeforeTrigger = " "
         let rangeTuple = string.range(of: triggers, options: NSString.CompareOptions.backwards)
         guard let location = rangeTuple.range?.location, let trigger = rangeTuple.foundString else { return }
         let substring = (string as NSString)
-
+        
         mentionEnabled = false
-
+        
         if location != NSNotFound {
             mentionEnabled = location == 0
-
+            
             if location > 0 {
-                // Determine whether or not a space exists before the triggter.
-                // (in the case of an @ trigger this avoids showing the mention list for an email address)
-                let substringRange = NSRange(location: location - 1, length: 1)
-                textBeforeTrigger = substring.substring(with: substringRange)
                 mentionEnabled = true
             }
         }
-
+        
         if mentionEnabled {
             var mentionString: String = ""
             if searchSpacesInMentions {
                 mentionString = substring.substring(with: NSRange(location: location, length: (textView.selectedRange.location - location) + textView.selectedRange.length))
-            } else if let stringBeingTyped = substring.components(separatedBy: textBeforeTrigger).last,
-                let stringForMention = stringBeingTyped.components(separatedBy: " ").last,
-                (stringForMention as NSString).range(of: trigger).location != NSNotFound {
-                mentionString = stringForMention
             }
-
+            else if let stringBeingTyped = substring.components(separatedBy: " ").last, (stringBeingTyped as NSString).range(of: trigger).location != NSNotFound {
+                let stringForMention = stringBeingTyped.components(separatedBy: trigger).last
+                mentionString = trigger + stringForMention!
+            }
+            
             if !mentionString.isEmpty {
                 currentMentionRange = (textView.text as NSString).range(
                     of: mentionString,
@@ -399,7 +394,7 @@ extension MentionListener {
                 )
                 filterString = (mentionString as NSString).replacingOccurrences(of: trigger, with: "")
                 filterString = filterString?.replacingOccurrences(of: "\n", with: "")
-
+                
                 if let filterString = filterString, !(cooldownTimer?.isValid ?? false) {
                     stringCurrentlyBeingFiltered = filterString
                     showMentionsListWithString(filterString, trigger)
@@ -408,7 +403,7 @@ extension MentionListener {
                 return
             }
         }
-
+        
         hideMentions()
         mentionEnabled = false
     }
