@@ -10,6 +10,7 @@ import UIKit
 import SZMentionsSwift
 
 struct ExampleMention: CreateMention {
+    var id: String = ""
     var name: String = ""
     var range: NSRange = NSRange(location: 0, length: 0)
 }

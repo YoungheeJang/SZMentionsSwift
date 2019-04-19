@@ -63,7 +63,7 @@
 		DBE8B49B1C657F200090EF32 /* NSMutableAttributedString+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Attributes.swift"; sourceTree = "<group>"; };
 		DBE8B49D1C657F200090EF32 /* Array+Mention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Mention.swift"; sourceTree = "<group>"; };
 		DBE8B49E1C657F200090EF32 /* AttributeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeContainer.swift; sourceTree = "<group>"; };
-		DBE8B4A01C657F200090EF32 /* MentionListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionListener.swift; sourceTree = "<group>"; };
+		DBE8B4A01C657F200090EF32 /* MentionListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MentionListener.swift; sourceTree = "<group>"; tabWidth = 4; };
 		DBF2DF5C1C4B1067001B9788 /* SZMentionsSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SZMentionsSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF2DF601C4B1067001B9788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6363D30311E857C64563F5D /* Pods_SZMentionsSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SZMentionsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };

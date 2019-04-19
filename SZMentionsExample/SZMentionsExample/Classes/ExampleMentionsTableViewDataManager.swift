@@ -14,14 +14,14 @@ class ExampleMentionsTableViewDataManager: NSObject {
     public let listener: MentionListener
     private let mentions: [ExampleMention] = {
         return [
-            "홍길동",
-            "홍길삼",
-            "김민아",
-            "김태희",
+            "홍길동Test",
+            "홍길삼 Zweier",
+            "김민아 abcef",
+            "김 a 태 b 희",
             "Steven Zweier",
             "John Smith",
             "Joe Tesla"].map {
-                ExampleMention(name: $0, range: NSRange(location: 0, length: 0))
+                ExampleMention(id: "", name: $0, range: NSRange(location: 0, length: 0))
         }
     }()
     private var mentionsList: [ExampleMention] {

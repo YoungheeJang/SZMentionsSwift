@@ -35,7 +35,7 @@ class ExampleAccessoryView: UIView {
             value: CustomParagraphStyleValue.valueWithParagraph()),
         Attribute(
             name: NSAttributedStringKey.font.rawValue,
-            value: UIFont(name: "ChalkboardSE-Bold", size: 12)!),
+            value: UIFont(name: "AppleSDGothicNeo-Light", size: 12)!),
         Attribute(
           name: HKWRoundedRectBackgroundAttributeName,
           value: HKWRoundedRectBackgroundAttributeValue.init(backgroundColor: UIColor(red: 0, green: 0.9137, blue: 1, alpha: 1.0)))
@@ -49,7 +49,7 @@ class ExampleAccessoryView: UIView {
             value: CustomParagraphStyleValue.valueWithParagraph()),
         Attribute(
             name: NSAttributedStringKey.font.rawValue,
-            value: UIFont(name: "ArialMT", size: 12)!),
+            value: UIFont(name: "AppleSDGothicNeo-Light", size: 12)!),
         Attribute(
           name: HKWRoundedRectBackgroundAttributeName,
           value: HKWRoundedRectBackgroundAttributeValue.init(backgroundColor: UIColor.clear))
@@ -72,7 +72,7 @@ class ExampleAccessoryView: UIView {
         addConstraintsToTextView(textView)
         textView.text = "Test Steven Zweier mention"
         
-        let mention = ExampleMention(name: "Steven Zweier",
+        let mention = ExampleMention(id: "", name: "Steven Zweier",
                                        range: NSRange(location: 5, length: 13))
         mentionsListener.insertExistingMentions([mention])
         
