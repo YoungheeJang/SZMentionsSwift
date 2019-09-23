@@ -333,12 +333,10 @@ extension MentionListener {
     private func reset(_ textView: UITextView) {
         mutableMentions.removeAll()
         resetTypingAttributes(for: textView)
-        textView.text = " "
         if let mutableAttributedString = textView.attributedText.mutableCopy() as? NSMutableAttributedString {
-            mutableAttributedString.apply(defaultTextAttributes, range: NSRange(location: 0, length: 1))
+            mutableAttributedString.apply(defaultTextAttributes, range: NSRange(location: 0, length: textView.text.utf16.count))
             textView.attributedText = mutableAttributedString
         }
-        textView.text = ""
     }
   
     private func resetAttributes(for textView: UITextView) {
