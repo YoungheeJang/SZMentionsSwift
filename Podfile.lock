@@ -9,7 +9,7 @@ DEPENDENCIES:
   - SwiftFormat/CLI
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Nimble
     - Quick
     - SwiftFormat
@@ -21,4 +21,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ef13260eca0b92c1b2d08ef313bf2f0ffc4c8663
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.3

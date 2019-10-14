@@ -36,8 +36,8 @@ internal extension Array where Element == Mention {
             }
         }
     }
-    
-    mutating func adjustWordMentions(forTextChangeAt range: NSRange, text: String) {
+
+    mutating func adjustWordMentions(forTextChangeAt range: NSRange, text _: String) {
         let rangeAdjustment = range.length
         mentionsAfterTextEntry(range).forEach { mention in
             var adjustedMention = mention
@@ -50,18 +50,18 @@ internal extension Array where Element == Mention {
             }
         }
     }
-    
+
     mutating func reAdjustMentions(text: String) {
         let rangeAdjustmentArry: [Int] = [0, -1, 1, -2, 2]
-        
-        self.forEach { mention in
-            
+
+        forEach { mention in
+
             var adjustedMention = mention
             adjustedMention.range = NSRange(
                 location: mention.range.location,
                 length: mention.range.length
             )
-            
+
             for rangeAdjustment in rangeAdjustmentArry {
                 var isEqual = true
                 adjustedMention.range.location = mention.range.location + rangeAdjustment
@@ -69,18 +69,18 @@ internal extension Array where Element == Mention {
                     let compareIndex = text.index(text.startIndex, offsetBy: adjustedMention.range.location + i)
                     if text[compareIndex] != char {
                         isEqual = false
-                        break;
+                        break
                     }
                 }
                 if isEqual { break }
             }
-            
+
             if let index = index(of: mention) {
                 self[index] = adjustedMention
             }
         }
     }
-    
+
     /**
      @brief Determines what mentions exist after a given range
      @param range: the range where text was changed
