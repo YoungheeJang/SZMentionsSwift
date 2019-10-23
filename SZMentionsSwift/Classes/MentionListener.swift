@@ -321,7 +321,7 @@ extension MentionListener {
     private func resetTypingAttributes(for textView: UITextView) {
         var attributes = [NSAttributedString.Key: Any]()
         for attribute in defaultTextAttributes {
-            attributes[NSAttributedString.Key(attribute.name)] = attribute.name
+            attributes[NSAttributedString.Key(attribute.name)] = attribute.value
         }
         textView.typingAttributes = attributes
     }
